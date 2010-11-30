@@ -1,0 +1,19 @@
+AddDefaultCharset       UTF-8
+Options                 +FollowSymLinks +ExecCGI
+
+php_flag short_open_tag off
+php_flag magic_quotes_gpc off
+
+
+
+<IfModule mod_rewrite.c>
+  RewriteEngine         On
+
+  RewriteBase           /
+
+  RewriteRule           ^$ index.html [QSA]
+  RewriteRule           ^([^.]+)$ $1.html [QSA]
+  RewriteCond           %{REQUEST_FILENAME} !-f
+
+  RewriteRule           ^(.*)$ index.php [QSA,L]
+</IfModule>
